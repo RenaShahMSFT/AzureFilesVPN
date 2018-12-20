@@ -1,5 +1,5 @@
 # AzureFilesVPN
-How to setup VPN with Azure Files
+If you have ever been blocked using Azure Files due to your ISP's port 445, you can setup a Point to Site VPN to your Azure Files. The following high level steps tells you how to do so.
 
 * Follow the steps listed here [https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal)
 * Changes that you make to above are:
