@@ -1,7 +1,7 @@
 # AzureFilesVPN
 How to setup VPN with Azure Files
 
-* Follow there steps listed here [https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal)
+* Follow the steps listed here [https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal)
 * Changes that you make to above are:
     * Add a service endpoint while creating VNet
     * Skip #3 – Its an optional step
