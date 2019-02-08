@@ -9,7 +9,7 @@ With this tutorial, one will be able to work around port 445 block by sending SM
 
 Run the [generatecert.ps1](/generatecert.ps1) as Admin
 
-![how to generate certs](/images/generatecertpowershell.jpg)
+![how to generate certs](/images/generatecertpowershell.JPG)
 
 The Certificate Signature will be an input to the ARM template.
 
@@ -42,7 +42,7 @@ Download the VPN client
 
 Unzip the VPN client and go to **Generic** folder. Open the **VpnSettings**
 
-![VPNSetting](/images/GenericVpnSettings.JPG)
+![VPNSetting](/images/GenericVpnSettings.jpg)
 
 Copy the **VNetId**. It will be used in step below.
 
