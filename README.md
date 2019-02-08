@@ -1,10 +1,14 @@
 
-# AzureFilesVPN - Point-to-Site Gateway
-Azure Files offers fully managed file shares in the cloud that are accessible via the industry standard Server Message Block (SMB) protocol. Azure file shares can be mounted concurrently by cloud or on-premises deployments of Windows, Linux, and macOS.  While connecting from on-prem, sometimes ISPs block port 445.Azure VPN Gateway connects your on-premises networks to Azure through Point-to-Site VPNs in a similar way that you set up and connect to a remote branch office. The connectivity is secure and uses the industry-standard protocols SSTP.
+# Azure Files - Point-to-Site VPN Tunnel
+Azure Files offers fully managed file shares in the cloud that are accessible via the industry standard Server Message Block (SMB) protocol. 
 
-With this tutorial, one will be able to work around port 445 block by sending SMB traffic over a secure tunnel instead of on internet.
+Azure file shares can be mounted concurrently by cloud or on-premises deployments of Windows, Linux, and macOS.  
 
->> In case you want a full step by step tutorial, follow steps at [Point to Site Setup in Portal doc](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal). Make the following minor modifications while following the tutorial from docs site:
+While connecting from on-prem, sometimes ISPs block port 445.Azure VPN Gateway connects your on-premises networks to Azure through Point-to-Site VPNs in a similar way that you set up and connect to a remote branch office. The connectivity is secure and uses the industry-standard protocols SSTP.
+
+With this tutorial, one will be able to work around port 445 block by sending SMB traffic from a Windows machine over a secure tunnel instead of on internet.
+
+>> Full instructions with step by step tutorial is available at [Point to Site Setup in Portal doc](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal). Make the following minor modifications while following the tutorial from docs site:
 >> * Add a Azure Storage service endpoint while creating virtual network.
  >>* Skip optional step #3 to "Specify a DNS server"
  >>* When on step #7 "Configure tunnel type", choose Tunnel Type to be only SSTP.
@@ -43,7 +47,7 @@ This template creates a VNet with a Gateway subnet associated to Azure Storage S
 
 ## Step 3 - Download and install the VPN client
 
-* Click on your gateway and go to the **Point to site** tab from the left pane. Download VPN client by clicking the button on the top.
+* Once the deployment fully completes, click on your gateway and go to the **Point to site** tab from the left pane. **Download VPN client** by clicking the button on the top.
 
   ![download VPN client](/images/downloadvpnclient.png)
 
