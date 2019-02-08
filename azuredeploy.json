@@ -11,14 +11,14 @@
       },
       "vnetAddressPrefix": {
         "type": "string",
-        "defaultValue": "192.168.100.0/24",
+        "defaultValue": "192.168.0.0/16",
         "metadata": {
           "description": "Address space for the VNet."
         }
       },
       "gatewaySubnetPrefix": {
         "type": "string",
-        "defaultValue": "192.168.100.16/28",
+        "defaultValue": "192.168.200.0/24",
         "metadata": {
           "description": "The prefix for the GatewaySubnet where the VirtualNetworkGateway will be deployed. This must be at least /29."
         }
@@ -39,14 +39,14 @@
       },
       "gatewaySku": {
         "type": "string",
-        "defaultValue": "Basic",
+        "defaultValue": "Standard",
         "metadata": {
           "description": "The Sku of the Gateway. This must be one of Basic, Standard or HighPerformance."
         }
       },
       "vpnClientAddressPoolPrefix": {
         "type": "string",
-        "defaultValue": "10.10.8.0/24",
+        "defaultValue": "172.16.201.0/24",
         "metadata": {
           "description": "The IP address range from which VPN clients will receive an IP address when connected. Range specified must not overlap with on-premise network."
         }
