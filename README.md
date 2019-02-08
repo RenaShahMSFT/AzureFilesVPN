@@ -53,21 +53,17 @@ This template creates a VNet with a Gateway subnet associated to Azure Storage S
 
   ![Install VPN Client](/images/installvpnclient.png)
 
-## Step 4 - Copy VNetId
+## Step 4 - Run the script to configure VPN route so that traffic to specified Storage account(s) goes through the VPN Tunnel
 
-* Go to **Generic** folder. 
-* Open the **VpnSettings**
+* Open [RouteUpdatingScript.ps1](RouteUpdatingScript.ps1) powershell script.  
+* Open **VPN client folder path\Generic\VpnSettings.xml**
 
   ![VPNSetting](/images/GenericVpnSettings.png)
 
-* Copy the **VNetId**. It will be used in step below.
+* In the script replace the **VNetId** value by copying it from the VpnSettings.xml
 
   ![VPNSetting](/images/howtocopyvnetid.png)
 
-## Step 5 - Run the script - Update the VPN route so that traffic to Storage account goes through the VPN Tunnel
-
-* Open [RouteUpdatingScript.ps1](RouteUpdatingScript.ps1) powershell script.  
-* In the script - update the **VNetId**. Make sure to replace the **VNet Id** that was copied in the step above.
 * Update the **FileShareHostList**.  and the **Azure Storage file endpoint** information with your own. `You can give multiple accounts separated by comma.`
 * Run the script. Script ideally needs to be run at every startup as Storage Account IP can get updated
 
@@ -75,7 +71,7 @@ This template creates a VNet with a Gateway subnet associated to Azure Storage S
 
 This script will fetch the IP address of the Storage account in which your file share resides and update the routes.txt located under C:\users\<username>\AppData\Roaming\Microsoft\Network\Connections\Cm folder.
 
-## Step 6 - Test Connection 
+## Step 5 - Test Connection 
 
 To test out if the configuration is working fine, use the firewall enable/disable port 445
 
