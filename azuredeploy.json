@@ -32,7 +32,7 @@
       },
       "gatewayName": {
         "type": "string",
-        "defaultValue": "VnetPip",
+        "defaultValue": "VnetGw",
         "metadata": {
           "description": "The name of the VirtualNetworkGateway."
         }
