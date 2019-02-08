@@ -4,6 +4,12 @@ Azure Files offers fully managed file shares in the cloud that are accessible vi
 
 With this tutorial, one will be able to work around port 445 block by sending SMB traffic over a secure tunnel instead of on internet.
 
+## Prerequisite
+ * You have a valid Subscription with admin permissions
+ * A storage account
+ * An Azure File Share
+ * A windows machine on which you would like to mount Azure file share
+
 
 ## Step 1 - Generate Root Certificate
 
