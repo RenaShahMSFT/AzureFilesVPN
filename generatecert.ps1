@@ -3,3 +3,5 @@ $clientcert = New-SelfSignedCertificate -Type Custom -DnsName P2SChildCert -KeyS
 Export-Certificate -Cert $parentcert -FilePath c:\P2SRootCertencoded.cer -NoClobber
 certutil -encode c:\P2SRootCertencoded.cer c:\P2SRootCert.cer 
 Get-Content -Path c:\P2SRootCert.cer
+Remove-Item -Path c:\P2SRootCertencoded.cer
+Remove-Item -Path c:\P2SRootCert.cer

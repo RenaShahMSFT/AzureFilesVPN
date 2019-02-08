@@ -21,7 +21,7 @@ With this tutorial, one will be able to work around port 445 block by sending SM
  * A Windows machine on which you would like to mount Azure file share
 
 
-## Step 1 - Generate Root Certificate
+## Step 1 - Generate Root and Client Certificate
 
 * Run the [generatecert.ps1](/generatecert.ps1) powershell script **as Admin**
 * **Copy** the certificate signature from output window (the highlighted portion in screenshot below).The Certificate Signature will be an input to the ARM template.
@@ -29,8 +29,7 @@ With this tutorial, one will be able to work around port 445 block by sending SM
   ![how to generate certs](/images/generatecertpowershell.png)
 
 
-
-## Step 2 - Deploy ARM Template
+## Step 2 - Deploy ARM Template to create VNet and P2S VPN Gateway
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FRenaShahMSFT%2FAzureFilesVPN%2Fmaster%2Fazuredeploy.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
@@ -74,7 +73,7 @@ This template creates a VNet with a Gateway subnet associated to Azure Storage S
 
 This script will fetch the IP address of the Storage account in which your file share resides and update the routes.txt located under C:\users\<username>\AppData\Roaming\Microsoft\Network\Connections\Cm folder. This script will also connect to VPN.
 
-## Step 5 - Test Connection 
+## Step 5 - Test Connection
 
 * To test out if the configuration is working fine disable port 445
 
