@@ -60,7 +60,6 @@
       },
       "clientRootCertData": {
         "type": "string",
-        "defaultValue": "!!!REPLACE THIS WITH WHAT YOU COPIED IN PREVIOUS STEP !!!",
         "metadata": {
           "description": "Client root certificate data used to authenticate VPN clients."
         }
