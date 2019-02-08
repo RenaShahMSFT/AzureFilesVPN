@@ -37,7 +37,7 @@ With this tutorial, one will be able to work around port 445 block by sending SM
 * Click **Deploy To Azure** button 
 * Make sure the **clientRootCert** name and signature is the one you created and copied from previous step
 * Fill other necessary info and submit deployment.
-* This deployment takes ~20 minutes to complete.
+* This deployment takes ~30-45 minutes to complete.
 
 This template creates a VNet with a Gateway subnet associated to Azure Storage Service endpoint. It then creates a public IP which is used to create a VPN Gateway in the VNet. Finally it configures a Dynamic Routing gateway with Point-to-Site configuration with tunnel type SSTP including VPN client address pool, client root certificates and revoked certificates and then creates the Gateway.
 

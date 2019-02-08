@@ -1,5 +1,5 @@
 ﻿# Customer Variables
-$VNetId = 'e4214c21-76e0-4e1b-b3c2-058c061841a3' #Found in the VPN Setting configuration
+$VNetId = '9a142c6d-e032-4753-93be-6e48b6885854' #Found in the VPN Setting configuration
 $FileShareHostList = @('renash445sa.file.core.windows.net') # All Storage Accounts that should use this VPN connection
 
 
