@@ -19,11 +19,12 @@ With this tutorial, one will be able to work around port 445 block by sending SM
 
 ## Step 1 - Generate Root Certificate
 
-Run the [generatecert.ps1](/generatecert.ps1) as Admin
+* Run the [generatecert.ps1](/generatecert.ps1) **as Admin**
+* The Certificate Signature will be an input to the ARM template.
 
-![how to generate certs](/images/generatecertpowershell.png)
+  ![how to generate certs](/images/generatecertpowershell.png)
 
-The Certificate Signature will be an input to the ARM template.
+
 
 ## Step 2 - Deploy ARM Template
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FRenaShahMSFT%2FAzureFilesVPN%2Fmaster%2Fazuredeploy.json" target="_blank">
