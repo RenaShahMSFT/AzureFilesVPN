@@ -36,7 +36,7 @@ Modify parameters file to change default values.
 
 Download the VPN client
 
-![download VPN client](/images/downloadvpnclient.jpg)
+![download VPN client](/images/downloadvpnclient.JPG)
 
 ## Step 4
 
