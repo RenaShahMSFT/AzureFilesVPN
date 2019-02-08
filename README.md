@@ -34,8 +34,9 @@ With this tutorial, one will be able to work around port 445 block by sending SM
     <img src="http://armviz.io/visualizebutton.png"/>
 </a>
 
-* Deploy the ARM Template by clicking above button 
-* Make sure the **root certificate** name and signature is the one you created and copied from previous step
+* Click **Deploy To Azure** button 
+* Make sure the **clientRootCert** name and signature is the one you created and copied from previous step
+* Fill other necessary info and submit deployment.
 * This deployment takes ~20 minutes to complete.
 
 This template creates a VNet with a Gateway subnet associated to Azure Storage Service endpoint. It then creates a public IP which is used to create a VPN Gateway in the VNet. Finally it configures a Dynamic Routing gateway with Point-to-Site configuration with tunnel type SSTP including VPN client address pool, client root certificates and revoked certificates and then creates the Gateway.
@@ -66,11 +67,14 @@ This template creates a VNet with a Gateway subnet associated to Azure Storage S
 ## Step 5 - Run the Script 
 
 * Open [RouteUpdatingScript.ps1](RouteUpdatingScript.ps1) powershell script.  
-* In the script - update the **VNetId** and **FileShareHostList**. Make sure to replace the **VNet Id** that was copied in the step above and the **Azure Storage File endpoint** information with your own. 
-* Run the script
-* Script ideally needs to be run at every startup as Storage Account IP can get updated
+* In the script - update the **VNetId**. Make sure to replace the **VNet Id** that was copied in the step above.
+* Update the **FileShareHostList**.  and the **Azure Storage file endpoint** information with your own.
+>> You can give multiple accounts separated by comma. 
+* Run the script. Script ideally needs to be run at every startup as Storage Account IP can get updated
 
   ![Run Routing Script](/images/runroutingscript.png)
+
+This script will fetch the IP address of the Storage account in which your file share resides and update the routes.txt located under C:\users\<username>Roaming\Microsoft\Network\Connections\Cm folder.
 
 ## Step 6 - Test Connection 
 
