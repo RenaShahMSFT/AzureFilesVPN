@@ -50,7 +50,7 @@ Copy the **VNetId**. It will be used in step below.
 
 ## Step 5
 
-Run [RouteUpdatingScript.ps1](RouteUpdatingScript.ps1) powershell script.  In the script - Make sure to replace the VNet Id that was copiued in the step above and the file share information with your own.
+Run [RouteUpdatingScript.ps1](RouteUpdatingScript.ps1) powershell script.  In the script - Make sure to replace the VNet Id that was copied in the step above and the file share information with your own.
 
 ## Step 6
 
