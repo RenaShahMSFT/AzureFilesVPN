@@ -9,7 +9,7 @@ With this tutorial, one will be able to work around port 445 block by sending SM
 
 Run the [generatecert.ps1](/generatecert.ps1) as Admin
 
-![how to generate certs](/images/generatecertpowershell.JPG)
+![how to generate certs](/images/generatecertpowershell.png)
 
 The Certificate Signature will be an input to the ARM template.
 
@@ -24,29 +24,38 @@ Deploy the following ARM Template with sample parameters in [azuredeploy.paramet
     <img src="http://armviz.io/visualizebutton.png"/>
 </a>
 
+
+
 ![deploy ARM Template](/images/ARMTemplateSample.png)
 
-This template creates a VNet with a Gateway subnet. It then creates a public IP which is used to create a VPN Gateway in the VNet. Finally it configures a Dynamic Routing gateway with Point-to-Site configuration including VPN client address pool, client root certificates and revoked certificates and then creates the Gateway.
+This template creates a VNet with a Gateway subnet associated to Azure Storage Service endpoint. It then creates a public IP which is used to create a VPN Gateway in the VNet. Finally it configures a Dynamic Routing gateway with Point-to-Site configuration with protocoal auth type SSTP including VPN client address pool, client root certificates and revoked certificates and then creates the Gateway.
 
 Modify parameters file to change default values.
 
-* [https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal)
+[https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal)
+
+If you decide to instead follow the steps in guidance above, make the following minor modifications:
+
+    * Add a service endpoint while creating VNet
+    * Skip #3 – Its an optional step
+    * When on #7 – Choose only sstp
+    * Continue until step # 11 from the tutorial and then replace Step #12 onwards with process below. 
 
 ## Step 3
 
 Download the VPN client
 
-![download VPN client](/images/downloadvpnclient.JPG)
+![download VPN client](/images/downloadvpnclient.png)
 
 ## Step 4
 
 Unzip the VPN client and go to **Generic** folder. Open the **VpnSettings**
 
-![VPNSetting](/images/GenericVpnSettings.jpg)
+![VPNSetting](/images/GenericVpnSettings.png)
 
 Copy the **VNetId**. It will be used in step below.
 
-![VPNSetting](/images/howtocopyvnetid.JPG)
+![VPNSetting](/images/howtocopyvnetid.png)
 
 ## Step 5
 
@@ -56,4 +65,4 @@ Run [RouteUpdatingScript.ps1](RouteUpdatingScript.ps1) powershell script.  In th
 
 To test out if the configuration is working fine, use the firewall enable/disable port 445
 
-![How to enable/disable firewall for port 445 testing](/images/FirewallSettingsEnableDisable.jpg)
+![How to enable/disable firewall for port 445 testing](/images/FirewallSettingsEnableDisable.png)
