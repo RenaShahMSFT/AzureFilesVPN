@@ -46,13 +46,17 @@ If you decide to instead follow the steps in guidance above, make the following 
     * When on step #7 configuring Point to Site VPN settings, choose only sstp.
     * Continue until step # 11 from the tutorial and then replace Step #12 onwards with process below.
 
-## Step 3 - Download the VPN client and unzip it
+## Step 3 - Download the VPN client and unzip it and Install it
 
 Click on your gateway and go to the **Point to site** tab from the left pane. Download VPN client by clicking the button on the top.
 
 ![download VPN client](/images/downloadvpnclient.png)
 
 Unzip the client and browse into the folder.
+
+If you are running amd64 - Run **VpnClientSetupAmd64.exe** from downloaded **WindowsAmd64** folder, run the x86 version in case your client is x86.
+
+![Install VPN Client](/images/installvpnclient.png)
 
 ## Step 4 - Copy VNetId
 
@@ -64,11 +68,7 @@ Copy the **VNetId**. It will be used in step below.
 
 ![VPNSetting](/images/howtocopyvnetid.png)
 
-## Step 5 - Install VPN Client and run the Script 
-
-If you are running amd64 - Run **VpnClientSetupAmd64.exe** from downloaded **WindowsAmd64** folder, run the x86 version in case your client is x86.
-
-![Install VPN Client](/images/installvpnclient.png)
+## Step 5 - Run the Script 
 
 Run [RouteUpdatingScript.ps1](RouteUpdatingScript.ps1) powershell script.  In the script - update the **VNetId** and **FileShareHostList**. Make sure to replace the **VNet Id** that was copied in the step above and the **Azure file share** information with your own. Script ideally needs to be run at every startup as Storage Account IP can get updated
 
