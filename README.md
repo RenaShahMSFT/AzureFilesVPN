@@ -5,7 +5,7 @@ Azure Files offers fully managed file shares in the cloud that are accessible vi
 With this tutorial, one will be able to work around port 445 block by sending SMB traffic over a secure tunnel instead of on internet.
 
 
-## Step 1
+## Step 1 - Generate Root Certificate
 
 Run the [generatecert.ps1](/generatecert.ps1) as Admin
 
@@ -13,9 +13,8 @@ Run the [generatecert.ps1](/generatecert.ps1) as Admin
 
 The Certificate Signature will be an input to the ARM template.
 
-## Step 2 
+## Step 2 - Deploy ARM Template
 
-Deploy the following ARM Template with sample parameters in [azuredeploy.parameters.json](azuredeploy.parameters.json)
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FRenaShahMSFT%2FAzureFilesVPN%2Fmaster%2Fazuredeploy.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
@@ -24,11 +23,13 @@ Deploy the following ARM Template with sample parameters in [azuredeploy.paramet
     <img src="http://armviz.io/visualizebutton.png"/>
 </a>
 
+Deploy the ARM Template by clicking above button - fill sample parameters from[azuredeploy.parameters.json](azuredeploy.parameters.json), however, make sure the root certificate signature is the one you created above.
 
+This deployment takes ~20 minutes to complete.
 
 ![deploy ARM Template](/images/ARMTemplateSample.png)
 
-This template creates a VNet with a Gateway subnet associated to Azure Storage Service endpoint. It then creates a public IP which is used to create a VPN Gateway in the VNet. Finally it configures a Dynamic Routing gateway with Point-to-Site configuration with protocoal auth type SSTP including VPN client address pool, client root certificates and revoked certificates and then creates the Gateway.
+This template creates a VNet with a Gateway subnet associated to Azure Storage Service endpoint. It then creates a public IP which is used to create a VPN Gateway in the VNet. Finally it configures a Dynamic Routing gateway with Point-to-Site configuration with protocol auth type SSTP including VPN client address pool, client root certificates and revoked certificates and then creates the Gateway.
 
 Modify parameters file to change default values.
 
@@ -41,13 +42,13 @@ If you decide to instead follow the steps in guidance above, make the following 
     * When on #7 – Choose only sstp
     * Continue until step # 11 from the tutorial and then replace Step #12 onwards with process below. 
 
-## Step 3
+## Step 3 - Download the VPN client
 
-Download the VPN client
+Click on your gateway and go to the **Point to site** tab from the left pane. Download VPN client by clicking the button on the top.
 
 ![download VPN client](/images/downloadvpnclient.png)
 
-## Step 4
+## Step 4 - Copy VNetId
 
 Unzip the VPN client and go to **Generic** folder. Open the **VpnSettings**
 
@@ -57,11 +58,11 @@ Copy the **VNetId**. It will be used in step below.
 
 ![VPNSetting](/images/howtocopyvnetid.png)
 
-## Step 5
+## Step 5 - Run the Script at every startup as Storage Account IP can get updated
 
-Run [RouteUpdatingScript.ps1](RouteUpdatingScript.ps1) powershell script.  In the script - Make sure to replace the VNet Id that was copied in the step above and the file share information with your own.
+Run [RouteUpdatingScript.ps1](RouteUpdatingScript.ps1) powershell script.  In the script - Make sure to replace the **VNet Id** that was copied in the step above and the **Azure file share** information with your own.
 
-## Step 6
+## Step 6 - Test Connection 
 
 To test out if the configuration is working fine, use the firewall enable/disable port 445
 
