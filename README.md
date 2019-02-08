@@ -27,7 +27,7 @@ The Certificate Signature will be an input to the ARM template.
     <img src="http://armviz.io/visualizebutton.png"/>
 </a>
 
-Deploy the ARM Template by clicking above button - fill sample parameters from[azuredeploy.parameters.json](azuredeploy.parameters.json), however, make sure the root certificate signature is the one you created above.
+Deploy the ARM Template by clicking above button - fill sample parameters from [azuredeploy.parameters.json](azuredeploy.parameters.json). Make sure the **root certificate** name and signature is the one you created and copied from previous step.
 
 This deployment takes ~20 minutes to complete.
 
@@ -41,10 +41,10 @@ Modify parameters file to change default values.
 
 If you decide to instead follow the steps in guidance above, make the following minor modifications:
 
-    * Add a service endpoint while creating VNet
-    * Skip #3 – Its an optional step
-    * When on #7 – Choose only sstp
-    * Continue until step # 11 from the tutorial and then replace Step #12 onwards with process below. 
+    * Add a Azure Storage service endpoint while creating VNet
+    * Skip optional step
+    * When on step #7 configuring Point to Site VPN settings, choose only sstp.
+    * Continue until step # 11 from the tutorial and then replace Step #12 onwards with process below.
 
 ## Step 3 - Download the VPN client and unzip it
 
@@ -56,7 +56,7 @@ Unzip the client and browse into the folder.
 
 ## Step 4 - Copy VNetId
 
-Unzip the VPN client and go to **Generic** folder. Open the **VpnSettings**
+Go to **Generic** folder. Open the **VpnSettings**
 
 ![VPNSetting](/images/GenericVpnSettings.png)
 
