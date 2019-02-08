@@ -14,13 +14,13 @@ With this tutorial, one will be able to work around port 445 block by sending SM
  * You have a valid Subscription with admin permissions
  * A storage account
  * An Azure File Share
- * A windows machine on which you would like to mount Azure file share
+ * A Windows machine on which you would like to mount Azure file share
 
 
 ## Step 1 - Generate Root Certificate
 
-* Run the [generatecert.ps1](/generatecert.ps1) **as Admin**
-* The Certificate Signature will be an input to the ARM template. Copy the certificate signature from output window (the highlighted portion in screenshot below)
+* Run the [generatecert.ps1](/generatecert.ps1) powershell script **as Admin**
+* **Copy** the certificate signature from output window (the highlighted portion in screenshot below).The Certificate Signature will be an input to the ARM template.
 
   ![how to generate certs](/images/generatecertpowershell.png)
 
@@ -36,7 +36,7 @@ With this tutorial, one will be able to work around port 445 block by sending SM
 
 * Click **Deploy To Azure** button 
 * Make sure the **clientRootCert** name and signature is the one you created and copied from previous step
-* Fill other necessary info and submit deployment.
+* Fill other necessary info and click **Purchase**.
 * This deployment takes ~30-45 minutes to complete.
 
 This template creates a VNet with a Gateway subnet associated to Azure Storage Service endpoint. It then creates a public IP which is used to create a VPN Gateway in the VNet. Finally it configures a Dynamic Routing gateway with Point-to-Site configuration with tunnel type SSTP including VPN client address pool, client root certificates and revoked certificates and then creates the Gateway.
@@ -53,26 +53,27 @@ This template creates a VNet with a Gateway subnet associated to Azure Storage S
 
   ![Install VPN Client](/images/installvpnclient.png)
 
-## Step 4 - Run the script to configure VPN route so that traffic to specified Storage account(s) goes through the VPN Tunnel
+## Step 4 - Configure VPN route so that traffic to specified Storage account(s) goes through the VPN Tunnel and connect to VPN
 
-* Open [RouteUpdatingScript.ps1](RouteUpdatingScript.ps1) powershell script.  
-* Open **VPN client folder path\Generic\VpnSettings.xml**
-
-  ![VPNSetting](/images/GenericVpnSettings.png)
-
-* In the script replace the **VNetId** value by copying it from the VpnSettings.xml
-
-  ![VPNSetting](/images/howtocopyvnetid.png)
-
-* Update the **FileShareHostList**.  and the **Azure Storage file endpoint** information with your own. `You can give multiple accounts separated by comma.`
-* Run the script. Script ideally needs to be run at every startup as Storage Account IP can get updated
+* Open [RouteUpdatingScript.ps1](RouteUpdatingScript.ps1) powershell script.
 
   ![Run Routing Script](/images/runroutingscript.png)
 
-This script will fetch the IP address of the Storage account in which your file share resides and update the routes.txt located under C:\users\<username>\AppData\Roaming\Microsoft\Network\Connections\Cm folder.
+* Replace the **VNetId** value in RouteUpdatingScript.ps1 by copying it from the **VPN client folder path\Generic\VpnSettings.xml**.
+
+  ![VPNSetting](/images/GenericVpnSettings.png)
+
+  ![VPNSetting](/images/howtocopyvnetid.png)
+
+* Replace the **FileShareHostList**.  and the **Azure Storage file endpoint** information with your own. `You can give multiple accounts separated by comma.`
+* Run the RouteUpdatingScript.ps1 script. RouteUpdatingScript.ps1 ideally needs to be run at every startup as Storage Account IP can get updated
+
+This script will fetch the IP address of the Storage account in which your file share resides and update the routes.txt located under C:\users\<username>\AppData\Roaming\Microsoft\Network\Connections\Cm folder. This script will also connect to VPN.
 
 ## Step 5 - Test Connection 
 
-To test out if the configuration is working fine, use the firewall enable/disable port 445
+* To test out if the configuration is working fine disable port 445
 
-![How to enable/disable firewall for port 445 testing](/images/FirewallSettingsEnableDisable.png)
+  ![How to enable/disable firewall for port 445 testing](/images/FirewallSettingsEnableDisable.png)
+
+* Mount file share - It should now succeed.
