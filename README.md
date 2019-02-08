@@ -20,7 +20,7 @@ With this tutorial, one will be able to work around port 445 block by sending SM
 ## Step 1 - Generate Root Certificate
 
 * Run the [generatecert.ps1](/generatecert.ps1) **as Admin**
-* The Certificate Signature will be an input to the ARM template.
+* The Certificate Signature will be an input to the ARM template. Copy the certificate signature from output window (the highlighted portion in screenshot below)
 
   ![how to generate certs](/images/generatecertpowershell.png)
 
@@ -73,7 +73,7 @@ This template creates a VNet with a Gateway subnet associated to Azure Storage S
 
   ![Run Routing Script](/images/runroutingscript.png)
 
-This script will fetch the IP address of the Storage account in which your file share resides and update the routes.txt located under C:\users\<username>Roaming\Microsoft\Network\Connections\Cm folder.
+This script will fetch the IP address of the Storage account in which your file share resides and update the routes.txt located under C:\users\<username>\AppData\Roaming\Microsoft\Network\Connections\Cm folder.
 
 ## Step 6 - Test Connection 
 
