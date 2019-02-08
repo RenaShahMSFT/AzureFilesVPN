@@ -4,18 +4,21 @@
     "parameters": {
       "virtualNetworkName": {
         "type": "string",
+        "defaultValue": "Vnet",
         "metadata": {
           "description": "Name of the VNet."
         }
       },
       "vnetAddressPrefix": {
         "type": "string",
+        "defaultValue": "192.168.100.0/24",
         "metadata": {
           "description": "Address space for the VNet."
         }
       },
       "gatewaySubnetPrefix": {
         "type": "string",
+        "defaultValue": "192.168.100.16/28",
         "metadata": {
           "description": "The prefix for the GatewaySubnet where the VirtualNetworkGateway will be deployed. This must be at least /29."
         }
@@ -28,6 +31,7 @@
       },
       "gatewayName": {
         "type": "string",
+        "defaultValue": "VnetPip",
         "metadata": {
           "description": "The name of the VirtualNetworkGateway."
         }
@@ -40,30 +44,35 @@
       },
       "vpnClientAddressPoolPrefix": {
         "type": "string",
+        "defaultValue": "10.10.8.0/24",
         "metadata": {
           "description": "The IP address range from which VPN clients will receive an IP address when connected. Range specified must not overlap with on-premise network."
         }
       },
       "clientRootCertName": {
         "type": "string",
+        "defaultValue": "P2SRootCert",
         "metadata": {
           "description": "The name of the client root certificate used to authenticate VPN clients. This is a common name used to identify the root cert."
         }
       },
       "clientRootCertData": {
         "type": "string",
+        "defaultValue": "!!!REPLACE THIS WITH WHAT YOU COPIED IN PREVIOUS STEP !!!",
         "metadata": {
           "description": "Client root certificate data used to authenticate VPN clients."
         }
       },
       "revokedCertName": {
         "type": "string",
+        "defaultValue": "RevokedCert1",
         "metadata": {
           "description": "The name of revoked certificate, if any. This is a common name used to identify a given revoked certificate."
         }
       },
       "revokedCertThumbprint": {
         "type": "string",
+        "defaultValue": "633EBFFBD01B6049D61E3CF059CFD940C8CE5780",
         "metadata": {
           "description": "Thumbprint of the revoked certificate. This would revoke VPN client certificates matching this thumbprint from connecting to the VNet."
         }
