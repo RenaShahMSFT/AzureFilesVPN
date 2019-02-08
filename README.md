@@ -37,8 +37,6 @@ The Certificate Signature will be an input to the ARM template.
 * Make sure the **root certificate** name and signature is the one you created and copied from previous step
 * This deployment takes ~20 minutes to complete.
 
-  ![deploy ARM Template](/images/ARMTemplateSample.png)
-
 This template creates a VNet with a Gateway subnet associated to Azure Storage Service endpoint. It then creates a public IP which is used to create a VPN Gateway in the VNet. Finally it configures a Dynamic Routing gateway with Point-to-Site configuration with tunnel type SSTP including VPN client address pool, client root certificates and revoked certificates and then creates the Gateway.
 
 ## Step 3 - Download and install the VPN client
