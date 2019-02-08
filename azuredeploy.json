@@ -25,6 +25,7 @@
       },
       "gatewayPublicIPName": {
         "type": "string",
+        "defaultValue": "VnetPip",
         "metadata": {
           "description": "The name of the PublicIP attached to the VirtualNetworkGateway."
         }
@@ -38,6 +39,7 @@
       },
       "gatewaySku": {
         "type": "string",
+        "defaultValue": "Basic",
         "metadata": {
           "description": "The Sku of the Gateway. This must be one of Basic, Standard or HighPerformance."
         }
