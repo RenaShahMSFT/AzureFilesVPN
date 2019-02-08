@@ -1,3 +1,4 @@
+
 # AzureFilesVPN - Point-to-Site Gateway
 Azure Files offers fully managed file shares in the cloud that are accessible via the industry standard Server Message Block (SMB) protocol. Azure file shares can be mounted concurrently by cloud or on-premises deployments of Windows, Linux, and macOS.  While connecting from on-prem, sometimes ISPs block port 445.Azure VPN Gateway connects your on-premises networks to Azure through Point-to-Site VPNs in a similar way that you set up and connect to a remote branch office. The connectivity is secure and uses the industry-standard protocols SSTP.
 
@@ -5,6 +6,7 @@ With this tutorial, one will be able to work around port 445 block by sending SM
 
 
 ## Step 1
+
 Run the [generatecert.ps1](/generatecert.ps1) as Admin
 
 ![how to generate certs](/images/generatecertpowershell.jpg)
@@ -30,8 +32,6 @@ Modify parameters file to change default values.
 
 * [https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal)
 
-
-
 ## Step 3
 
 Download the VPN client
@@ -49,6 +49,7 @@ Copy the **VNetId**. It will be used in step below.
 ![VPNSetting](/images/howtocopyvnetid.JPG)
 
 ## Step 5
+
 Run [RouteUpdatingScript.ps1](RouteUpdatingScript.ps1) powershell script.  In the script - Make sure to replace the VNet Id that was copiued in the step above and the file share information with your own.
 
 ## Step 6
