@@ -24,9 +24,11 @@ With this tutorial, one will be able to work around port 445 block by sending SM
 This powershell script will generate self-signed root and client certificates. 
 
 >> NOTE
+>>
 >> In case you are using an enterprise root certificate, modify the script accordingly and execute.
 
 >> NOTE
+>>
 >> Client cert needs to be installed on every connecting client. You can either install the same client cert (after it is created from the root cert as done in the script above) by exporting it, or create one for each client.
 
 ## Step 2 - Deploy ARM Template to create VNet and P2S VPN Gateway
@@ -72,6 +74,7 @@ This template creates a VNet with a Gateway subnet associated to Azure Storage S
 * Run the RouteSetupAndConnectToVPN.ps1 script **as ADMIN**.
 
 >> NOTE
+>>
 >> Storage Account IP can get updated. RouteSetupAndConnectToVPN.ps1 should be run as a scheduled task at startup to reconnect the VPN if a constant connection is desired. It must be run with admin permissions.
 
 This script will fetch the IP address of the Storage account in which your file share resides and update the routes.txt located under C:\users\<username>\AppData\Roaming\Microsoft\Network\Connections\Cm folder. This script will also connect to VPN.
