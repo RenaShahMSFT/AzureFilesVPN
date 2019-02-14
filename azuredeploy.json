@@ -63,20 +63,6 @@
         "metadata": {
           "description": "Client root certificate data used to authenticate VPN clients."
         }
-      },
-      "revokedCertName": {
-        "type": "string",
-        "defaultValue": "RevokedCert1",
-        "metadata": {
-          "description": "The name of revoked certificate, if any. This is a common name used to identify a given revoked certificate."
-        }
-      },
-      "revokedCertThumbprint": {
-        "type": "string",
-        "defaultValue": "633EBFFBD01B6049D61E3CF059CFD940C8CE5780",
-        "metadata": {
-          "description": "Thumbprint of the revoked certificate. This would revoke VPN client certificates matching this thumbprint from connecting to the VNet."
-        }
       }
     },
     "variables": {
@@ -163,14 +149,6 @@
                 "name": "[parameters('clientRootCertName')]",
                 "properties": {
                   "PublicCertData": "[parameters('clientRootCertData')]"
-                }
-              }
-            ],
-            "vpnClientRevokedCertificates": [
-              {
-                "name": "[parameters('revokedCertName')]",
-                "properties": {
-                  "Thumbprint": "[parameters('revokedCertThumbprint')]"
                 }
               }
             ]

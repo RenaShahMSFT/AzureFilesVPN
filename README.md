@@ -27,6 +27,13 @@ With this tutorial, one will be able to work around port 445 block by sending SM
 
   ![how to generate certs](/images/generatecertpowershell.png)
 
+This powershell script will generate self-signed root and client certificates. 
+
+>> NOTE
+>> In case you are using an enterprise root certificate, modify the script accordingly and execute.
+
+>> NOTE
+>> Client cert needs to be installed on every connecting client. You can either install the same client cert (after it is created from the root cert as done in the script above) by exporting it, or create one for each client.
 
 ## Step 2 - Deploy ARM Template to create VNet and P2S VPN Gateway
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FRenaShahMSFT%2FAzureFilesVPN%2Fmaster%2Fazuredeploy.json" target="_blank">
@@ -68,14 +75,9 @@ This template creates a VNet with a Gateway subnet associated to Azure Storage S
   ![VPNSetting](/images/howtocopyvnetid.png)
 
 * Replace the **FileShareHostList**.  and the **Azure Storage file endpoint** information with your own. `You can give multiple accounts separated by comma.`
-* Run the RouteUpdatingScript.ps1 script. RouteUpdatingScript.ps1 ideally needs to be run at every startup as Storage Account IP can get updated
+* Run the RouteUpdatingScript.ps1 script **as ADMIN**.
+
+>> NOTE
+>> Storage Account IP can get updated. RouteUpdatingScript.ps1 should be run as a scheduled task at startup to reconnect the VPN if a constant connection is desired. It must be run with admin permissions.
 
 This script will fetch the IP address of the Storage account in which your file share resides and update the routes.txt located under C:\users\<username>\AppData\Roaming\Microsoft\Network\Connections\Cm folder. This script will also connect to VPN.
-
-## Step 5 - Test Connection
-
-* To test out if the configuration is working fine disable port 445
-
-  ![How to enable/disable firewall for port 445 testing](/images/FirewallSettingsEnableDisable.png)
-
-* Mount file share - It should now succeed.
