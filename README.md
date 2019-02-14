@@ -7,12 +7,6 @@ While connecting from on-prem, sometimes ISPs block port 445.Azure VPN Gateway c
 
 With this tutorial, one will be able to work around port 445 block by sending SMB traffic from a Windows machine over a secure tunnel instead of on internet.
 
->> Full instructions with step by step tutorial is available at [Point to Site Setup in Portal doc](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal). Make the following minor modifications while following the tutorial from docs site:
->> * Add a Azure Storage service endpoint while creating virtual network.
- >>* Skip optional step #3 to "Specify a DNS server"
- >>* When on step #7 "Configure tunnel type", choose Tunnel Type to be only SSTP.
->>* Continue until step # 11 from the tutorial and then replace Step #12 "Connect to Azure Step" onwards with running the RouteUpdatingScript.ps1 as indicated below in this tutorial.
-
 ## Prerequisite
  * You have a valid Subscription with admin permissions
  * A storage account
@@ -64,20 +58,31 @@ This template creates a VNet with a Gateway subnet associated to Azure Storage S
 
 ## Step 4 - Configure VPN route so that traffic to specified Storage account(s) goes through the VPN Tunnel and connect to VPN
 
-* Open [RouteUpdatingScript.ps1](RouteUpdatingScript.ps1) powershell script.
+* Open [RouteSetupAndConnectToVPN.ps1](RouteSetupAndConnectToVPN.ps1) powershell script.
 
   ![Run Routing Script](/images/runroutingscript.png)
 
-* Replace the **VNetId** value in RouteUpdatingScript.ps1 by copying it from the **VPN client folder path\Generic\VpnSettings.xml**.
+* Replace the **VNetId** value in RouteSetupAndConnectToVPN.ps1 by copying it from the **VPN client folder path\Generic\VpnSettings.xml**.
 
   ![VPNSetting](/images/GenericVpnSettings.png)
 
   ![VPNSetting](/images/howtocopyvnetid.png)
 
 * Replace the **FileShareHostList**.  and the **Azure Storage file endpoint** information with your own. `You can give multiple accounts separated by comma.`
-* Run the RouteUpdatingScript.ps1 script **as ADMIN**.
+* Run the RouteSetupAndConnectToVPN.ps1 script **as ADMIN**.
 
 >> NOTE
->> Storage Account IP can get updated. RouteUpdatingScript.ps1 should be run as a scheduled task at startup to reconnect the VPN if a constant connection is desired. It must be run with admin permissions.
+>> Storage Account IP can get updated. RouteSetupAndConnectToVPN.ps1 should be run as a scheduled task at startup to reconnect the VPN if a constant connection is desired. It must be run with admin permissions.
 
 This script will fetch the IP address of the Storage account in which your file share resides and update the routes.txt located under C:\users\<username>\AppData\Roaming\Microsoft\Network\Connections\Cm folder. This script will also connect to VPN.
+
+## Conclusion
+
+Thats it. This will get you to a Point to Site VPN setup that works well with Azure Files.
+
+>> NOTE
+>>
+>> General instructions is available at [Point to Site Setup in Portal doc](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal). The above instructions are specific to Azure Files Point to Site VPN interop. In order for Point to Site VPN to work well with Azure Files, following considerations are necessary:
+>> * Adding an Azure Storage service endpoint while creating virtual network is mandatory.
+>>* Tunnel Type should only be SSTP.
+>>* The running of RouteSetupAndConnectToVPN.ps1 is a mandatory step.
