@@ -16,12 +16,16 @@ With this tutorial, one will be able to work around port 445 block by sending SM
 
 ## Step 1 - Generate Root and Client Certificate
 
+The steps below heps you create a Self-Signed certificate. If you're using an enterprise solution, you can use your existing certificate chain. Acquire the .cer file for the root certificate that you want to use.
+
 * Run the [generatecert.ps1](/generatecert.ps1) powershell script **as Admin**
 * **Copy** the certificate signature from output window (the highlighted portion in screenshot below).The Certificate Signature will be an input to the ARM template.
 
   ![how to generate certs](/images/generatecertpowershell.png)
 
-This powershell script will generate self-signed root and client certificates. 
+This powershell script will generate self-signed root and client certificates and also export the root certificate signature and client certificate file. 
+
+Certificates are used by Azure to authenticate clients connecting to a VNet over a Point-to-Site VPN connection. Once you obtain a root certificate, you upload the public key information to Azure. The root certificate is then considered 'trusted' by Azure for connection over P2S to the virtual network. You also generate client certificates from the trusted root certificate, and then install them on each client computer. The client certificate is used to authenticate the client when it initiates a connection to the VNet.
 
 >> NOTE
 >>
@@ -29,7 +33,7 @@ This powershell script will generate self-signed root and client certificates.
 
 >> NOTE
 >>
->> Client cert needs to be installed on every connecting client. You can either install the same client cert (after it is created from the root cert as done in the script above) by exporting it, or create one for each client.
+>> Client cert needs to be installed on every connecting client. You can either install the same client cert (after it is created and exported as done in the script above) or create one for each client using root cert.
 
 ## Step 2 - Deploy ARM Template to create VNet and P2S VPN Gateway
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FRenaShahMSFT%2FAzureFilesVPN%2Fmaster%2Fazuredeploy.json" target="_blank">
