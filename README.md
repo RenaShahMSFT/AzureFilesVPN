@@ -16,9 +16,9 @@ With this tutorial, one will be able to work around port 445 block by sending SM
 
 ## Step 1 - Generate Root and Client Certificate
 
-The steps below helps you create a Self-Signed certificate. If you're using an enterprise solution, you can use your existing certificate chain. Acquire the .cer file for the root certificate that you want to use.
+The steps below helps you create a Self-Signed certificate. If you're using an enterprise solution, you can use your existing certificate chain. Acquire the .cer file for the root certificate that you want to use. To learn more about certificates and Azure VPN interop read the [Azure Point To Site VPN documentation](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-point-to-site-classic-azure-portal#generatecerts).
 
-* Run the [generatecert.ps1](/generatecert.ps1) powershell script **as Admin**. Update the variables to the desired values. Especially the ones below.
+* Run the [generatecert.ps1](/generatecert.ps1) powershell script **as Admin**. Update the variables to the desired values. Especially the ones highlighted in screenshot below.
 
   ![how to generate certs](/images/generatecert.png)
 
