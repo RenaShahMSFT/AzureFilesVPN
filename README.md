@@ -16,14 +16,18 @@ With this tutorial, one will be able to work around port 445 block by sending SM
 
 ## Step 1 - Generate Root and Client Certificate
 
-The steps below heps you create a Self-Signed certificate. If you're using an enterprise solution, you can use your existing certificate chain. Acquire the .cer file for the root certificate that you want to use.
+The steps below helps you create a Self-Signed certificate. If you're using an enterprise solution, you can use your existing certificate chain. Acquire the .cer file for the root certificate that you want to use.
 
-* Run the [generatecert.ps1](/generatecert.ps1) powershell script **as Admin**
+* Run the [generatecert.ps1](/generatecert.ps1) powershell script **as Admin**. Update the variables to the desired values. Especially the ones below.
+
+  ![how to generate certs](/images/generatecert.png)
+
+
 * **Copy** the certificate signature from output window (the highlighted portion in screenshot below).The Certificate Signature will be an input to the ARM template.
 
-  ![how to generate certs](/images/generatecertpowershell.png)
+  ![how to generate certs](/images/generatecertpowershelloutput.png)
 
-This powershell script will generate self-signed root and client certificates and also export the root certificate signature and client certificate file. 
+This powershell script will generate self-signed root and client certificates and also export the root certificate signature and client certificate file. Client certificate is automatically installed on the computer that you used to generate it. If you want to install a client certificate on another client computer, the exported .pfx file is also generated in the script which will be stored on local drive.
 
 Certificates are used by Azure to authenticate clients connecting to a VNet over a Point-to-Site VPN connection. Once you obtain a root certificate, you upload the public key information to Azure. The root certificate is then considered 'trusted' by Azure for connection over P2S to the virtual network. You also generate client certificates from the trusted root certificate, and then install them on each client computer. The client certificate is used to authenticate the client when it initiates a connection to the VNet.
 
@@ -79,9 +83,9 @@ This template creates a VNet with a Gateway subnet associated to Azure Storage S
 
 >> NOTE
 >>
->> Storage Account IP can get updated. RouteSetupAndConnectToVPN.ps1 should be run as a scheduled task at startup to reconnect the VPN if a constant connection is desired. It must be run with admin permissions.
+>> Storage Account IP can get updated automatically. RouteSetupAndConnectToVPN.ps1 should be run as a scheduled task at startup to reconnect the VPN if a constant connection is desired. It must be run with admin permissions.
 
-This script will fetch the IP address of the Storage account in which your file share resides and update the routes.txt located under C:\users\<username>\AppData\Roaming\Microsoft\Network\Connections\Cm folder. This script will also connect to VPN.
+This script will fetch the IP address of the Storage account in which your file share resides and update the routes.txt located under C:\users\YOURUSERNAME\AppData\Roaming\Microsoft\Network\Connections\Cm folder. This script will also connect to VPN.
 
 ## Conclusion
 
