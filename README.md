@@ -5,7 +5,10 @@ Azure file shares can be mounted concurrently by cloud or on-premises deployment
 
 While connecting from on-prem, sometimes ISPs block port 445.Azure VPN Gateway connects your on-premises networks to Azure through Point-to-Site VPNs in a similar way that you set up and connect to a remote branch office. The connectivity is secure and uses the industry-standard protocols SSTP.
 
-With this tutorial, one will be able to work around port 445 block by sending SMB traffic from a Windows machine over a secure tunnel instead of on internet.
+With this tutorial, one will be able to work around port 445 block by sending SMB traffic from a Windows machine over a secure tunnel instead of on internet. 
+
+This is a custom deployment for Azure Files of Point to Site VPN solution. In order for Point to Site VPN to work well Azure Files, Storage service endpoint should be added to virtual network
+and Tunnel Type should only be SSTP. The template below takes care of these configuration settings.
 
 ## Prerequisite
  * You have a valid Subscription with admin permissions
@@ -23,7 +26,13 @@ The steps below helps you create a Self-Signed certificate. If you're using an e
   ![how to generate certs](/images/generatecert.png)
 
 
-* **Copy** the certificate signature from output window (the highlighted portion in screenshot below).The Certificate Signature will be an input to the ARM template.
+* **Copy** the certificate signature from output window (the highlighted portion in screenshot below).The Certificate Signature will be an input to the ARM template. 
+
+    ---- BEGIN CERTIFICATE ---
+
+    ONLY COPY CERTIFICATE SIGNATURE IN BETWEEN
+
+    ----- END CERTIFICATE -----
 
   ![how to generate certs](/images/generatecertpowershelloutput.png)
 
@@ -56,13 +65,13 @@ This template creates a VNet with a Gateway subnet associated to Azure Storage S
 
 ## Step 3 - Download and install the VPN client
 
-* Once the deployment fully completes, click on your gateway and go to the **Point to site** tab from the left pane. **Download VPN client** by clicking the button on the top.
+* Once the deployment fully completes, click on your gateway and go to the **Virtual Network Gateway >> Point-to-Site confirmation** tab from the left pane. **Download VPN client** by clicking the button on the top.
 
   ![download VPN client](/images/downloadvpnclient.png)
 
 * Unzip the client and browse into the folder.
 
-* If you are running amd64 - Run **VpnClientSetupAmd64.exe** from downloaded **WindowsAmd64** folder, run the x86 version in case your client is x86.
+* If you are running amd64 - Run **VpnClientSetupAmd64.exe** from the **VPN Download client that was just installed WindowsAmd64** folder, run the x86 version in case your client is x86.
 
   ![Install VPN Client](/images/installvpnclient.png)
 
@@ -80,6 +89,7 @@ This template creates a VNet with a Gateway subnet associated to Azure Storage S
 
 * Replace the **FileShareHostList**.  and the **Azure Storage file endpoint** information with your own. `You can give multiple accounts separated by comma.`
 * Run the RouteSetupAndConnectToVPN.ps1 script **as ADMIN**.
+* If you have an existing mounted share, you will need to re-establish the SMB connection for VPN to take effect
 
 >> NOTE
 >>
@@ -93,7 +103,4 @@ Thats it. This will get you to a Point to Site VPN setup that works well with Az
 
 >> NOTE
 >>
->> General instructions is available at [Point to Site Setup in Portal doc](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal). The above instructions are specific to Azure Files Point to Site VPN interop. In order for Point to Site VPN to work well with Azure Files, following considerations are necessary:
->> * Adding an Azure Storage service endpoint while creating virtual network is mandatory.
->>* Tunnel Type should only be SSTP.
->>* The running of RouteSetupAndConnectToVPN.ps1 is a mandatory step.
+>> General instructions is available at [Point to Site Setup in Portal doc](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal). The above instructions are specific to Azure Files Point to Site VPN interop.

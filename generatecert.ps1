@@ -3,11 +3,15 @@
 $rootcertname = "CN=P2SRootCert"
 $clientcertname = "CN=P2SChildCert"
 $certLocation = "Cert:\CurrentUser\My"
-$pathtostoreoutputfiles = "C:\"
+$pathtostoreoutputfiles = "C:\exportedcert\"
 $clientcertpassword = "1234"
 $exportedencodedrootcertpath = $pathtostoreoutputfiles + "P2SRootCertencoded.cer"
 $exportedrootcertpath = $pathtostoreoutputfiles + "P2SRootCert.cer"
 $exportedclientcertpath = $pathtostoreoutputfiles + "P2SClientCert.pfx"
+
+if (-Not (Test-Path $pathtostoreoutputfiles)){
+    New-Item -ItemType Directory -Force -Path $pathtostoreoutputfiles
+}
 
 # Create, install and Export Self-Signed Root Certificate Signature
 
@@ -26,3 +30,4 @@ Export-PfxCertificate -FilePath $exportedclientcertpath -Password $mypwd -Cert $
 
 Remove-Item -Path $exportedencodedrootcertpath
 Remove-Item -Path $exportedrootcertpath
+
