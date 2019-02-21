@@ -115,18 +115,18 @@ These instructions are assuming that you generated the client cert and exported 
 
 * Open [RouteSetupAndConnectToVPN.ps1](RouteSetupAndConnectToVPN.ps1) powershell script.
 
-* Replace the **VNetId** value in RouteSetupAndConnectToVPN.ps1 by copying it from the **VPN client folder path\Generic\VpnSettings.xml**.
+* Replace the value of ***$VNetId*** in RouteSetupAndConnectToVPN.ps1 by copying it from the **downloaded and unzipped VPN client folder path -> Generic -> VpnSettings.xml**.
 
   ![VPNSetting](/images/GenericVpnSettings.png)
 
   ![VPNSetting](/images/howtocopyvnetid.png)
 
-* Replace the **FileShareHostList**.  and the **Azure Storage file endpoint** information with your own. `You can give multiple accounts separated by comma.`
+* Replace the value of **$FileShareHostList** information with your own. `You can give multiple accounts separated by comma.`
 * Run the RouteSetupAndConnectToVPN.ps1 script **as ADMIN**.
 
   ![Run Routing Script](/images/runroutingscript.png)
 
-* If you have an existing mounted share, you will need to re-establish the SMB connection for VPN to take effect
+* If you have an existing mounted share, you will need to **re-establish the SMB connection** by re-mounting the share for VPN to take effect.
 
 > Storage Account IP can get updated automatically. RouteSetupAndConnectToVPN.ps1 should be **run as a scheduled task at startup** to reconnect the VPN if a constant connection is desired with **admin permissions**.
 
@@ -134,7 +134,7 @@ This script will fetch the IP address of the Storage account in which your file 
 
 ## Step 6 - Persist and mount Azure File Share
 
-Persist your Azure Files credentials use a persistent mount to enable mounting at every startup after reboot. 
+Persist your Azure Files credentials and use a persistent mount to enable mounting at every startup after reboot.
 
 Here are the details instructions to [persist connection for Azure Files](https://docs.microsoft.com/en-us/azure/storage/files/storage-how-to-use-files-windows#persisting-azure-file-share-credentials-in-windows). At a high level follow the instructions below - 
 
