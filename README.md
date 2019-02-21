@@ -44,7 +44,7 @@ The steps below helps you create a Self-Signed certificate. If you're using an e
   ![how to generate certs](/images/generatecert.png)
 
 
-* From the output console, **copy** the certificate signature from output window (the highlighted portion in screenshot below).The Certificate Signature will be an input to the ARM template. **DO NOT** copy `---- BEGIN CERTIFICATE ---` and `----- END CERTIFICATE -----`. Only copy the text in between.
+* From the output console, **copy** the certificate signature from output window (the highlighted portion in screenshot below).The Certificate Signature will be an input to the ARM template. **DO NOT** copy `---- BEGIN CERTIFICATE ---` and `----- END CERTIFICATE -----`. **Only copy the text in between**.
 
     ![Generate Cert Output](/images/generatecertpowershelloutput.png)
 
