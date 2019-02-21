@@ -74,7 +74,7 @@ Certificates are used by Azure to authenticate clients connecting to a VNet over
     <img src="http://armviz.io/visualizebutton.png"/>
 </a>
 
-* Click **Deploy To Azure** button 
+* Click **Deploy To Azure** button above. It will take you to Azure Portal. 
 * Make sure the **clientRootCert** name and signature is the one you created and copied from previous step
 * Fill other necessary info and click **Purchase**.
 * This deployment takes ~30-45 minutes to complete.
