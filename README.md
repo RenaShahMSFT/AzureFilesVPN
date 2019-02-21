@@ -115,8 +115,6 @@ These instructions are assuming that you generated the client cert and exported 
 
 * Open [RouteSetupAndConnectToVPN.ps1](RouteSetupAndConnectToVPN.ps1) powershell script.
 
-  ![Run Routing Script](/images/runroutingscript.png)
-
 * Replace the **VNetId** value in RouteSetupAndConnectToVPN.ps1 by copying it from the **VPN client folder path\Generic\VpnSettings.xml**.
 
   ![VPNSetting](/images/GenericVpnSettings.png)
@@ -125,6 +123,9 @@ These instructions are assuming that you generated the client cert and exported 
 
 * Replace the **FileShareHostList**.  and the **Azure Storage file endpoint** information with your own. `You can give multiple accounts separated by comma.`
 * Run the RouteSetupAndConnectToVPN.ps1 script **as ADMIN**.
+
+  ![Run Routing Script](/images/runroutingscript.png)
+
 * If you have an existing mounted share, you will need to re-establish the SMB connection for VPN to take effect
 
 > Storage Account IP can get updated automatically. RouteSetupAndConnectToVPN.ps1 should be **run as a scheduled task at startup** to reconnect the VPN if a constant connection is desired with **admin permissions**.
