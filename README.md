@@ -46,6 +46,8 @@ The steps below helps you create a Self-Signed certificate. If you're using an e
 
 * From the output console, **copy** the certificate signature from output window (the highlighted portion in screenshot below).The Certificate Signature will be an input to the ARM template. **DO NOT** copy `---- BEGIN CERTIFICATE ---` and `----- END CERTIFICATE -----`. Only copy the text in between.
 
+    ![Generate Cert Output](/images/generatecertpowershelloutput.png)
+
 This powershell script will generate self-signed root and client certificates and also export the root certificate signature and client certificate file. Client certificate is automatically installed on the computer that you used to generate it. If you want to install a client certificate on another client computer, the exported .pfx file is also generated in the script which will be stored on local drive.
 
 Certificates are used by Azure to authenticate clients connecting to a VNet over a Point-to-Site VPN connection. Once you obtain a root certificate, you upload the public key information to Azure. The root certificate is then considered 'trusted' by Azure for connection over P2S to the virtual network. You also generate client certificates from the trusted root certificate, and then install them on each client computer. The client certificate is used to authenticate the client when it initiates a connection to the VNet.
@@ -67,7 +69,7 @@ Certificates are used by Azure to authenticate clients connecting to a VNet over
 </a>
 
 * Click **Deploy To Azure** button above. It will take you to Azure Portal.
-* **Paste** ** the **Client Root Cert** copied from copied from previous step.
+* **Paste** the **Client Root Cert Data** copied from copied from previous step.
 * Fill other necessary info and click **Purchase**.
 * This deployment takes ~30-45 minutes to complete.
 
