@@ -117,8 +117,6 @@ These instructions are assuming that you generated the client cert and exported 
 
 * Replace the value of ***$VNetId*** in RouteSetupAndConnectToVPN.ps1 by copying it from the **downloaded and unzipped VPN client folder path -> Generic -> VpnSettings.xml**.
 
-  ![VPNSetting](/images/GenericVpnSettings.png)
-
   ![VPNSetting](/images/howtocopyvnetid.png)
 
 * Replace the value of **$FileShareHostList** information with your own. `You can give multiple accounts separated by comma.`
