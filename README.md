@@ -7,7 +7,7 @@
 - [Step 2 - Deploy ARM Template to create VNet and P2S VPN Gateway](#step-2---deploy-arm-template-to-create-vnet-and-p2s-vpn-gateway)
 - [Step 3 - Download and install the VPN client](#step-3---download-and-install-the-vpn-client)
 - [Step 4 - Install Client cert [Optional Step]](#step-4---install-client-cert-optional-step)
-- [Step 5 - Configure VPN route so that traffic to specified Storage account(s) goes through the VPN Tunnel and connect to VPN](#step-5---configure-vpn-route-so-that-traffic-to-specified-storage-accounts-goes-through-the-vpn-tunnel-and-connect-to-vpn)
+- [Step 5 - Configure VPN route so that traffic to specified Storage account(s) goes through the VPN Tunnel](#step-5---configure-vpn-route-so-that-traffic-to-specified-storage-accounts-goes-through-the-vpn-tunnel)
 - [Step 6 - Persist and mount Azure File Share](#step-6---persist-and-mount-azure-file-share)
 - [Conclusion](#conclusion)
 <!-- /TOC -->
@@ -111,7 +111,7 @@ These instructions are assuming that you generated the client cert and exported 
     ![Install cert last 4 steps](/images/installcertlast4steps.png)
 
 
-## Step 5 - Configure VPN route so that traffic to specified Storage account(s) goes through the VPN Tunnel and connect to VPN
+## Step 5 - Configure VPN route so that traffic to specified Storage account(s) goes through the VPN Tunnel
 
 * Open [RouteSetupAndConnectToVPN.ps1](RouteSetupAndConnectToVPN.ps1) powershell script.
 
