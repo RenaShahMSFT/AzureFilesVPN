@@ -137,13 +137,12 @@ Here are the details instructions to [persist connection for Azure Files](https:
     ```
     cmdkey /add:<your-storage-account-name>.file.core.windows.net /user:AZURE\<your-storage-account-name> /pass:<your-storage-account-key>
     ```
-* View the persisted credentials
+* View the persisted credentials. There should be an entry with your Storage Account name.
 
     ```
     cmdkey /list
     ```
 
-    ![See Persisted Credentials](/images/viewpersistedcredentials.png)
     
 * Mount the file share using *-Persist* and with no credentials provided. The example below shows mapping to *X* drive, but you can mount to any drive letter.
 
