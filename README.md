@@ -39,20 +39,12 @@ and Tunnel Type should only be SSTP. The template below takes care of these conf
 
 The steps below helps you create a Self-Signed certificate. If you're using an enterprise solution, you can use your existing certificate chain. Acquire the .cer file for the root certificate that you want to use. To learn more about certificates and Azure VPN interop read the [Azure Point To Site VPN documentation](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-point-to-site-classic-azure-portal#generatecerts).
 
-* Run the [generatecert.ps1](/generatecert.ps1) powershell script **as Admin**. Update the variables to the desired values. Especially the ones highlighted in screenshot below.
+* **Run** the [generatecert.ps1](/generatecert.ps1) powershell script **as Admin**. Update the variables to the desired values. Especially the ones highlighted in screenshot below.
 
   ![how to generate certs](/images/generatecert.png)
 
 
-* **Copy** the certificate signature from output window (the highlighted portion in screenshot below).The Certificate Signature will be an input to the ARM template. 
-
-    ---- BEGIN CERTIFICATE ---
-
-    ONLY COPY CERTIFICATE SIGNATURE IN BETWEEN
-
-    ----- END CERTIFICATE -----
-
-  ![how to generate certs](/images/generatecertpowershelloutput.png)
+* From the output console, **copy** the certificate signature from output window (the highlighted portion in screenshot below).The Certificate Signature will be an input to the ARM template. **DO NOT** copy `---- BEGIN CERTIFICATE ---` and `----- END CERTIFICATE -----`. Only copy the text in between.
 
 This powershell script will generate self-signed root and client certificates and also export the root certificate signature and client certificate file. Client certificate is automatically installed on the computer that you used to generate it. If you want to install a client certificate on another client computer, the exported .pfx file is also generated in the script which will be stored on local drive.
 
@@ -74,10 +66,12 @@ Certificates are used by Azure to authenticate clients connecting to a VNet over
     <img src="http://armviz.io/visualizebutton.png"/>
 </a>
 
-* Click **Deploy To Azure** button above. It will take you to Azure Portal. 
-* Make sure the **clientRootCert** name and signature is the one you created and copied from previous step
+* Click **Deploy To Azure** button above. It will take you to Azure Portal.
+* **Paste** ** the **Client Root Cert** copied from copied from previous step.
 * Fill other necessary info and click **Purchase**.
 * This deployment takes ~30-45 minutes to complete.
+
+    ![Run ARM Template](/images/runarmtemplate.png)
 
 This template creates a VNet with a Gateway subnet associated to Azure Storage Service endpoint. It then creates a public IP which is used to create a VPN Gateway in the VNet. Finally it configures a Dynamic Routing gateway with Point-to-Site configuration with tunnel type SSTP including VPN client address pool, client root certificates and revoked certificates and then creates the Gateway.
 
