@@ -1,4 +1,18 @@
 # Azure Files - Point-to-Site VPN Tunnel
+
+<!-- TOC depthFrom:2 orderedList:false updateOnSave:false -->
+- [Overview](#overview)
+- [Prerequisite](#prerequisite)
+- [Step 1 - Generate Root and Client Certificate](#step-1---generate-root-and-client-certificate)
+- [Step 2 - Deploy ARM Template to create VNet and P2S VPN Gateway](#step-2---deploy-arm-template-to-create-vnet-and-p2s-vpn-gateway)
+- [Step 3 - Download and install the VPN client](#step-3---download-and-install-the-vpn-client)
+- [Step 4 - Install Client cert [Optional Step]](#step-4---install-client-cert-optional-step)
+- [Step 5 - Configure VPN route so that traffic to specified Storage account(s) goes through the VPN Tunnel and connect to VPN](#step-5---configure-vpn-route-so-that-traffic-to-specified-storage-accounts-goes-through-the-vpn-tunnel-and-connect-to-vpn)
+- [Step 6 - Persist and mount Azure File Share](#step-6---persist-and-mount-azure-file-share)
+- [Conclusion](#conclusion)
+<!-- /TOC -->
+
+## Overview
 Azure Files offers fully managed file shares in the cloud that are accessible via the industry standard Server Message Block (SMB) protocol. 
 
 Azure file shares can be mounted concurrently by cloud or on-premises deployments of Windows, Linux, and macOS.  
